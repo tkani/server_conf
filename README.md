@@ -1,3 +1,4 @@
+# configuration
 <VirtualHost *:443>
     ServerName ai-being.com
     ServerAdmin support@aibeing.com

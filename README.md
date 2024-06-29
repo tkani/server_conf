@@ -39,3 +39,27 @@ sudo systemctl restart apache2
     ServerAdmin support@aibeing.com
     Redirect permanent / https://ai-being.com/
 </VirtualHost>
+
+
+# Server Configuration
+Step 1: Backup Databases on the Source Server
+SSH into the source server:
+
+ssh user@source-server-ip
+Dump all databases:
+
+mysqldump -u root -p --all-databases > all_databases.sql
+Transfer the dump file to the destination server:
+
+scp all_databases.sql user@destination-server-ip:/path/to/directory
+Step 2: Restore Databases on the Destination Server
+SSH into the destination server:
+
+ssh user@destination-server-ip
+Restore the dump:
+
+mysql -u root -p < /path/to/directory/all_databases.sql
+Step 3: Verify the Databases
+Check if databases are correctly transferred:
+
+mysql -u root -p -e "SHOW DATABASES;"
